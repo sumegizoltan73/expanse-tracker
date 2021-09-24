@@ -1,0 +1,8 @@
+@media screen and (max-width: 768px) {
+    .budget-bar .row .col-12 {
+        margin-top: 10px;
+     }
+    .budget-bar .row .col-12:first-child {
+       margin-top: 0px;
+    }
+  }

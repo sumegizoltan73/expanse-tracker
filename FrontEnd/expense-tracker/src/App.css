@@ -3,6 +3,11 @@
   margin: 0px 15%;
 }
 
+h1 {
+  font-weight: bolder;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 768px) {
   .App {
      margin: 0px 10px;
