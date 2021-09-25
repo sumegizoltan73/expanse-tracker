@@ -17,12 +17,13 @@
 }
 
 .btn-check:hover+.btn-outline-dark {
-    background-color: #373A3C !important;
-    border-color: #373A3C !important;
+    background-color: #373A3C;
+    border-color: #373A3C;
 }
 
 .bg-dark {
     color: white;
+    background-color: #373A3C !important;
 }
 
 .tracker-list-card  {
@@ -39,6 +40,35 @@
 
 .most-expensive-card .item {
     text-align: right;
+}
+
+.tracker-list-details {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.list-group-item {
+    text-align: right;
+    cursor: default !important;
+}
+
+.list-group-item .inline {
+    display: inline-block;
+}
+
+.list-group-item .left {
+    float: left;
+}
+
+.list-group-item button {
+    margin-left: 20px;
+    border-radius: 50%;
+    font-size: 0.8em;
+}
+
+.list-group-item .badge {
+    font-size: 0.9em;
+    font-weight: normal;
 }
 
 @media only screen and (max-width: 1399px) {

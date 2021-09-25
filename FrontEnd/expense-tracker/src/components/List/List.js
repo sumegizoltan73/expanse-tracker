@@ -34,8 +34,8 @@ const List = (props) => {
                     </div>
                 </div>
                 <div className="col-12 col-xxl-6">
-                    <div class="input-group" >
-                        <input type="text" class="form-control" placeholder="Type to search" />
+                    <div className="input-group" >
+                        <input type="text" className="form-control" placeholder="Type to search" />
                     </div>
                 </div>
             </div>
@@ -44,7 +44,44 @@ const List = (props) => {
                 <div className="col-12">
                     <div className="row bg-dark tracker-list-card most-expensive-card">
                         <div className="col-12 col-xxl-6 label">Most expensive action ever</div>
-                        <div className="col-12 col-xxl-6 item">Grocery 60.000, HUF</div>
+                        <div className="col-12 col-xxl-6 item">Grocery: 60.000, HUF</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div className="row">
+                <div className="col-12">
+                    <div className="list-group tracker-list-details">
+                        <button type="button" className="list-group-item list-group-item-action">
+                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
+                            <button className="bg-dark">X</button>
+                            <div className="inline left">Shopping</div>
+                        </button>
+                        <button type="button" className="list-group-item list-group-item-action">
+                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
+                            <button className="bg-dark">X</button>
+                            <div className="inline left">Shopping</div>
+                        </button>
+                        <button type="button" className="list-group-item list-group-item-action">
+                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
+                            <button className="bg-dark">X</button>
+                            <div className="inline left">Shopping</div>
+                        </button>
+                        <button type="button" className="list-group-item list-group-item-action">
+                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
+                            <button className="bg-dark">X</button>
+                            <div className="inline left">Shopping</div>
+                        </button>
+                        <button type="button" className="list-group-item list-group-item-action">
+                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
+                            <button className="bg-dark">X</button>
+                            <div className="inline left">Shopping</div>
+                        </button>
+                        <button type="button" className="list-group-item list-group-item-action">
+                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
+                            <button className="bg-dark">X</button>
+                            <div className="inline left">Shopping</div>
+                        </button>
                     </div>
                 </div>
             </div>
