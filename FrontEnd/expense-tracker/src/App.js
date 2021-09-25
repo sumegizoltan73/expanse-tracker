@@ -1,6 +1,7 @@
 import './App.css';
 import BudgetBar from './components/BudgetBar/BudgetBar';
 import CashFlow from './components/CashFlow/CashFlow';
+import List from './components/List/List';
 
 function App() {
   return (
@@ -9,6 +10,7 @@ function App() {
       <BudgetBar />
       <div className="row">
         <CashFlow />
+        <List />
       </div>
     </div>
   );

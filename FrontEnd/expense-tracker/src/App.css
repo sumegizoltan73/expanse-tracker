@@ -12,4 +12,12 @@ h1 {
   .App {
      margin: 0px 10px;
   }
+
+  .tracker-list {
+    margin-top: 10px;
+  }
+
+  .tracker-list .col-12 {
+    margin-top: 10px;
+  }
 }
