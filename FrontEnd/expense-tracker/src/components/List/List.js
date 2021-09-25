@@ -12,25 +12,29 @@ const List = (props) => {
         });
     };
 
+    const onItemDeleteClick = (event) => {
+        return null;
+    };
+
     return (
         <div className="col-12 col-md-8 tracker-list">
             <div className="row">
                 <div className="col-12 col-xxl-6">
                     <div className="btn-group tracker-list-radio" role="group">
-                        <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autocomplete="off" 
+                        <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autoComplete="off" 
                             checked={radioState.selected === 'btnradio1'} 
                             onChange={handleRadioChange} />
-                        <label className="btn btn-outline-dark" for="btnradio1">EXPENSES</label>
+                        <label className="btn btn-outline-dark" htmlFor="btnradio1">EXPENSES</label>
 
-                        <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autocomplete="off" 
+                        <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autoComplete="off" 
                             checked={radioState.selected === 'btnradio2'} 
                             onChange={handleRadioChange} />
-                        <label className="btn btn-outline-dark" for="btnradio2">INCOMES</label>
+                        <label className="btn btn-outline-dark" htmlFor="btnradio2">INCOMES</label>
 
-                        <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autocomplete="off" 
+                        <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autoComplete="off" 
                             checked={radioState.selected === 'btnradio3'} 
                             onChange={handleRadioChange} />
-                        <label className="btn btn-outline-dark" for="btnradio3">ALL</label>
+                        <label className="btn btn-outline-dark" htmlFor="btnradio3">ALL</label>
                     </div>
                 </div>
                 <div className="col-12 col-xxl-6">
@@ -52,36 +56,13 @@ const List = (props) => {
             <div className="row">
                 <div className="col-12">
                     <div className="list-group tracker-list-details">
-                        <button type="button" className="list-group-item list-group-item-action">
-                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
-                            <button className="bg-dark">X</button>
-                            <div className="inline left">Shopping</div>
-                        </button>
-                        <button type="button" className="list-group-item list-group-item-action">
-                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
-                            <button className="bg-dark">X</button>
-                            <div className="inline left">Shopping</div>
-                        </button>
-                        <button type="button" className="list-group-item list-group-item-action">
-                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
-                            <button className="bg-dark">X</button>
-                            <div className="inline left">Shopping</div>
-                        </button>
-                        <button type="button" className="list-group-item list-group-item-action">
-                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
-                            <button className="bg-dark">X</button>
-                            <div className="inline left">Shopping</div>
-                        </button>
-                        <button type="button" className="list-group-item list-group-item-action">
-                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
-                            <button className="bg-dark">X</button>
-                            <div className="inline left">Shopping</div>
-                        </button>
-                        <button type="button" className="list-group-item list-group-item-action">
-                            <span className="badge rounded-pill bg-success">60.000 HUF</span>
-                            <button className="bg-dark">X</button>
-                            <div className="inline left">Shopping</div>
-                        </button>
+                        {props.items && props.items.map(item => (
+                            <div className="list-group-item list-group-item-action" key={item.id} >
+                                <span className="badge rounded-pill bg-success">{item.username} HUF</span>
+                                <button className="bg-dark" onClick={onItemDeleteClick}>X</button>
+                                <div className="inline left">{item.name}</div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
