@@ -1,3 +1,7 @@
+.tracker-list {
+    margin-top: 20px;
+}
+
 .tracker-list label.btn {
     font-weight: bold;
 }
@@ -17,6 +21,26 @@
     border-color: #373A3C !important;
 }
 
+.bg-dark {
+    color: white;
+}
+
+.tracker-list-card  {
+    border-radius: 5px;
+    margin: 20px 1px 0px 1px;
+    padding: 20px 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.most-expensive-card .label {
+    text-align: left;
+}
+
+.most-expensive-card .item {
+    text-align: right;
+}
+
 @media only screen and (max-width: 1399px) {
     .tracker-list label.btn {
         padding: 5px 34px;
@@ -24,6 +48,10 @@
 
     .tracker-list .col-12 {
         margin-top: 10px;
+    }
+
+    .most-expensive-card .item {
+        text-align: left;
     }
 }
 

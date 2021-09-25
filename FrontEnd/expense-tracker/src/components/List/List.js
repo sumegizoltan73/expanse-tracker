@@ -16,7 +16,7 @@ const List = (props) => {
         <div className="col-12 col-md-8 tracker-list">
             <div className="row">
                 <div className="col-12 col-xxl-6">
-                    <div className="btn-group" role="group">
+                    <div className="btn-group tracker-list-radio" role="group">
                         <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autocomplete="off" 
                             checked={radioState.selected === 'btnradio1'} 
                             onChange={handleRadioChange} />
@@ -40,6 +40,14 @@ const List = (props) => {
                 </div>
             </div>
             
+            <div className="row">
+                <div className="col-12">
+                    <div className="row bg-dark tracker-list-card most-expensive-card">
+                        <div className="col-12 col-xxl-6 label">Most expensive action ever</div>
+                        <div className="col-12 col-xxl-6 item">Grocery 60.000, HUF</div>
+                    </div>
+                </div>
+            </div>
         </div>
         
     );
