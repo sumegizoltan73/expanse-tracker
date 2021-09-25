@@ -15,7 +15,7 @@ const List = (props) => {
     return (
         <div className="col-12 col-md-8 tracker-list">
             <div className="row">
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-xxl-6">
                     <div className="btn-group" role="group">
                         <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autocomplete="off" 
                             checked={radioState.selected === 'btnradio1'} 
@@ -33,7 +33,7 @@ const List = (props) => {
                         <label className="btn btn-outline-dark" for="btnradio3">ALL</label>
                     </div>
                 </div>
-                <div className="col-12 col-md-6">
+                <div className="col-12 col-xxl-6">
                     <div class="input-group" >
                         <input type="text" class="form-control" placeholder="Type to search" />
                     </div>

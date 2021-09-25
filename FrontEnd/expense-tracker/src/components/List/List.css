@@ -1,4 +1,21 @@
 .tracker-list label.btn {
     font-weight: bold;
-    padding: 5px 34px;
+}
+
+@media only screen and (max-width: 1399px) {
+    .tracker-list label.btn {
+        padding: 5px 34px;
+    }
+}
+
+@media only screen and (min-width: 1400px) and (max-width: 1620px) {
+    .tracker-list label.btn {
+        padding: 5px 10px;
+    }
+}
+
+@media only screen and (min-width: 1621px) {
+    .tracker-list label.btn {
+        padding: 5px 34px;
+    }
 }
