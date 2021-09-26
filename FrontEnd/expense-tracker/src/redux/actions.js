@@ -1,4 +1,5 @@
 import * as types from './actionType';
+import useTransactionList from '../GraphQL/Query';
 
 const getUsers = (users) => ({
     type: types.GET_USERS,
@@ -13,22 +14,10 @@ const userAdded = () => ({
     type: types.ADD_USER
 });
 
-export const loadUsers = () => {
+export const loadUsers = (data) => {
+
     return function (dispatch) {
-        fetch(`https://${process.env.REACT_APP_API}`, {
-            headers : { 
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-             }
-        })
-            .then(res => res.json())
-            .then(data => {
-                dispatch(getUsers(data));
-            })
-            .catch(error => {
-                console.log('fetch error');
-                console.log(error);
-            });
+        dispatch(getUsers(data.getALL));
     };
 };
 

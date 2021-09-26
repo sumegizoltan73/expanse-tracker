@@ -5,25 +5,29 @@ import CashFlow from './components/CashFlow/CashFlow';
 import List from './components/List/List';
 import {useDispatch, useSelector} from 'react-redux';
 import { addUser, deleteUser, loadUsers } from './redux/actions';
+import { useMutation, useQuery } from "@apollo/client";
+import { CREATE_TRANSACTION, DELETE_TRANSACTION } from "./GraphQL/Mutation";
+import { getALL } from "./GraphQL/Query";
 
 function App() {
   const [radioState, setRadioState] = useState('expenses');
-  
   const [transactionState, setTransactionState] = useState({
     name: '',
-    username: '',
+    amount: '',
     type: ''
   });
-
+  const [dataState, setDataState] = useState([]);
   const [errorState, setErrorState] = useState('');
-
-  let dispatch = useDispatch();
-  
-  const { users } = useSelector(state => state.users );
+  const [reloadState, setReloadState] = useState(false);
+  const { loading, error, data } = useQuery(getALL);
+  const [createTransaction, { err }] = useMutation(CREATE_TRANSACTION);
+  const [deleteTransaction, { errr }] = useMutation(DELETE_TRANSACTION);
 
   useEffect(() => {
-    dispatch(loadUsers());
-  }, [dispatch]);
+    if (!loading) {
+      setDataState(data.getAll);
+    }
+  }, [loading, data]);
   
   const handleCashFlowInputChange = (event) => {
     let { name, value } = event.target;
@@ -35,16 +39,29 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    dispatch(deleteUser(id));
+    
   };
 
   const handleTransaction = (type) => {
-    if (!transactionState.name || !transactionState.username) {
+    if (!transactionState.name || !transactionState.amount) {
       setErrorState('Please input all input fields!');
     }
     else {
       setErrorState('');
-      dispatch(addUser(transactionState, setTransactionState));
+      createTransaction({
+        variables: {
+          name: transactionState.name,
+          amount: parseInt(transactionState.amount),
+          type: type
+        },
+      }).then(data => {
+        setDataState([...dataState, data.data.createTransaction]);
+        setTransactionState({
+          name: '',
+          amount: '',
+          type: ''
+        });
+      });
     }
   };
 
@@ -59,7 +76,7 @@ function App() {
           transaction={transactionState} 
           error={errorState}
         />
-        <List items={users} selected={radioState} changeRadio={handleRadioChange} delete={handleDelete} />
+        <List items={dataState} selected={radioState} changeRadio={handleRadioChange} delete={handleDelete} />
       </div>
     </div>
   );

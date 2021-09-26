@@ -44,7 +44,7 @@ const List = (props) => {
                     <div className="list-group tracker-list-details">
                         {props.items && props.items.map(item => (
                             <div className="list-group-item list-group-item-action" key={item.id} >
-                                <span className="badge rounded-pill bg-success">{item.username} HUF</span>
+                                <span className="badge rounded-pill bg-success">{item.amount} HUF</span>
                                 <button className="bg-dark" onClick={() => props.delete(item.id)}>X</button>
                                 <div className="inline left">{item.name}</div>
                             </div>

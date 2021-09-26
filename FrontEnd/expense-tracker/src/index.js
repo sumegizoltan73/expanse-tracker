@@ -5,11 +5,21 @@ import App from './App';
 import {Provider} from 'react-redux';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/store';
+import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from "@apollo/client";
+
+const client = new ApolloClient({
+  cache: new InMemoryCache(),
+  link: new HttpLink({
+    uri: "http://localhost:8080/graphql",
+  }),
+});
 
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
