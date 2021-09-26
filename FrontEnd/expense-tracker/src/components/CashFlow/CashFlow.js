@@ -8,15 +8,21 @@ const CashFlow = (props) => {
             <div className="input-group" >
                 <label>
                     Name
-                    <input type="text" className="form-control" placeholder="e.g.: Shopping" />
+                    <input type="text" id="cash-flow-name" className="form-control" placeholder="e.g.: Shopping" />
                 </label>
             </div>
             <div className="cash-flow-actions">
                 <label>Amount</label>
                 <div className="input-group" >
-                    <button className="btn btn-primary btn-income" type="button" id="button-addon1">INCOME</button>
-                    <input type="text" className="form-control" placeholder="3000" />
-                    <button className="btn btn-primary btn-expense" type="button" id="button-addon1">EXPENSE</button>
+                    <button className="btn btn-primary btn-income" type="button" 
+                        onClick={() => props.click('income')} >
+                        INCOME
+                    </button>
+                    <input type="text" id="cash-flow-amount" className="form-control" placeholder="3000" />
+                    <button className="btn btn-primary btn-expense" type="button" 
+                        onClick={() => props.click('expense')} >
+                        EXPENSE
+                    </button>
                 </div>
             </div>
             
