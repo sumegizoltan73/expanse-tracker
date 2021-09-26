@@ -1,6 +1,7 @@
 import { ApolloServer, gql } from "apollo-server-express";
 import express from "express";
 import mongoose from "mongoose";
+import { config } from "dotenv";
 import { resolvers } from "./resolvers.js";
 import { typeDefs } from "./typeDefs.js";
 
@@ -12,7 +13,8 @@ const startServer = async () => {
     resolvers
   });
 
-  const connectString = '***REMOVED***';
+  config();
+  const connectString = process.env.CONNECTSTRING;
 
   await server.start();
   server.applyMiddleware({ app });
