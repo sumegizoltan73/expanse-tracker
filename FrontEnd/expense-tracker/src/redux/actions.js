@@ -53,14 +53,11 @@ export const deleteUser = (id) => {
     };
 };
 
-export const addUser = (name, amount, type) => {
+export const addUser = (transaction, setStateFn) => {
     return function (dispatch) {
         fetch(`https://${process.env.REACT_APP_API_ADD}`, {
             method: 'POST',
-            body: JSON.stringify({
-                name: name,
-                username: amount
-            }),
+            body: JSON.stringify(transaction),
             headers : { 
               'Content-Type': 'application/json',
               'Accept': 'application/json'
@@ -68,8 +65,11 @@ export const addUser = (name, amount, type) => {
         })
             .then(res => res.json())
             .then(data => {
-                document.querySelector('#cash-flow-name').value = '';
-                document.querySelector('#cash-flow-amount').value = '';
+                setStateFn({
+                    name: '',
+                    username: '',
+                    type: ''
+                });
 
                 dispatch(userAdded());
                 dispatch(loadUsers());

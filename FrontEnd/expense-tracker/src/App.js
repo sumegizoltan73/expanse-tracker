@@ -8,6 +8,14 @@ import { addUser, deleteUser, loadUsers } from './redux/actions';
 
 function App() {
   const [radioState, setRadioState] = useState('expenses');
+  
+  const [transactionState, setTransactionState] = useState({
+    name: '',
+    username: '',
+    type: ''
+  });
+
+  const [errorState, setErrorState] = useState('');
 
   let dispatch = useDispatch();
   
@@ -17,9 +25,13 @@ function App() {
     dispatch(loadUsers());
   }, [dispatch]);
   
+  const handleCashFlowInputChange = (event) => {
+    let { name, value } = event.target;
+    setTransactionState({ ...transactionState, [name]: value });
+  };
 
   const handleRadioChange = (event) => {
-      setRadioState(event.target.id);
+    setRadioState(event.target.id);
   };
 
   const handleDelete = (id) => {
@@ -27,11 +39,12 @@ function App() {
   };
 
   const handleTransaction = (type) => {
-    const name = document.querySelector('#cash-flow-name');
-    const amount = document.querySelector('#cash-flow-amount');
-
-    if (name.value && amount.value) {
-      dispatch(addUser(name.value, amount.value, type));
+    if (!transactionState.name || !transactionState.username) {
+      setErrorState('Please input all input fields!');
+    }
+    else {
+      setErrorState('');
+      dispatch(addUser(transactionState, setTransactionState));
     }
   };
 
@@ -40,7 +53,12 @@ function App() {
       <h1>My Budget Planner</h1>
       <BudgetBar />
       <div className="row">
-        <CashFlow click={handleTransaction} />
+        <CashFlow 
+          click={handleTransaction} 
+          change={handleCashFlowInputChange} 
+          transaction={transactionState} 
+          error={errorState}
+        />
         <List items={users} selected={radioState} changeRadio={handleRadioChange} delete={handleDelete} />
       </div>
     </div>

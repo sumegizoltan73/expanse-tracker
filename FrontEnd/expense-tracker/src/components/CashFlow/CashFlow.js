@@ -5,10 +5,12 @@ const CashFlow = (props) => {
     return (
         <div className="col-12 col-md-4 cash-flow">
             <h2>Cash flow</h2>
+            {props.error && <h3 style={{color: "red"}} >{props.error}</h3>}
             <div className="input-group" >
                 <label>
                     Name
-                    <input type="text" id="cash-flow-name" className="form-control" placeholder="e.g.: Shopping" />
+                    <input type="text" name="name" className="form-control" placeholder="e.g.: Shopping" 
+                        value={props.transaction.name} onChange={props.change} />
                 </label>
             </div>
             <div className="cash-flow-actions">
@@ -18,7 +20,8 @@ const CashFlow = (props) => {
                         onClick={() => props.click('income')} >
                         INCOME
                     </button>
-                    <input type="text" id="cash-flow-amount" className="form-control" placeholder="3000" />
+                    <input type="text" name="username" className="form-control" placeholder="3000" 
+                        value={props.transaction.username} onChange={props.change} />
                     <button className="btn btn-primary btn-expense" type="button" 
                         onClick={() => props.click('expense')} >
                         EXPENSE
