@@ -1,17 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './List.css';
 
 const List = (props) => {
-    const [radioState, setRadioState] = useState({
-        selected: 'btnradio1'
-    });
-
-    const handleRadioChange = (event) => {
-        setRadioState({
-            selected: event.target.id
-        });
-    };
-
     const onItemDeleteClick = (event) => {
         return null;
     };
@@ -21,20 +11,20 @@ const List = (props) => {
             <div className="row">
                 <div className="col-12 col-xxl-6">
                     <div className="btn-group tracker-list-radio" role="group">
-                        <input type="radio" className="btn-check" name="btnradio" id="btnradio1" autoComplete="off" 
-                            checked={radioState.selected === 'btnradio1'} 
-                            onChange={handleRadioChange} />
-                        <label className="btn btn-outline-dark" htmlFor="btnradio1">EXPENSES</label>
+                        <input type="radio" className="btn-check" name="btnradio" id="expenses" autoComplete="off" 
+                            checked={props.selected === 'expenses'} 
+                            onChange={props.changeRadio} />
+                        <label className="btn btn-outline-dark" htmlFor="expenses">EXPENSES</label>
 
-                        <input type="radio" className="btn-check" name="btnradio" id="btnradio2" autoComplete="off" 
-                            checked={radioState.selected === 'btnradio2'} 
-                            onChange={handleRadioChange} />
-                        <label className="btn btn-outline-dark" htmlFor="btnradio2">INCOMES</label>
+                        <input type="radio" className="btn-check" name="btnradio" id="incomes" autoComplete="off" 
+                            checked={props.selected === 'incomes'} 
+                            onChange={props.changeRadio} />
+                        <label className="btn btn-outline-dark" htmlFor="incomes">INCOMES</label>
 
-                        <input type="radio" className="btn-check" name="btnradio" id="btnradio3" autoComplete="off" 
-                            checked={radioState.selected === 'btnradio3'} 
-                            onChange={handleRadioChange} />
-                        <label className="btn btn-outline-dark" htmlFor="btnradio3">ALL</label>
+                        <input type="radio" className="btn-check" name="btnradio" id="all" autoComplete="off" 
+                            checked={props.selected === 'all'} 
+                            onChange={props.changeRadio} />
+                        <label className="btn btn-outline-dark" htmlFor="all">ALL</label>
                     </div>
                 </div>
                 <div className="col-12 col-xxl-6">
