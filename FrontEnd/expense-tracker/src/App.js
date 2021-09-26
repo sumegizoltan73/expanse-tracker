@@ -3,8 +3,6 @@ import './App.css';
 import BudgetBar from './components/BudgetBar/BudgetBar';
 import CashFlow from './components/CashFlow/CashFlow';
 import List from './components/List/List';
-import {useDispatch, useSelector} from 'react-redux';
-import { addUser, deleteUser, loadUsers } from './redux/actions';
 import { useMutation, useQuery } from "@apollo/client";
 import { CREATE_TRANSACTION, DELETE_TRANSACTION } from "./GraphQL/Mutation";
 import { getALL } from "./GraphQL/Query";
@@ -18,7 +16,6 @@ function App() {
   });
   const [dataState, setDataState] = useState([]);
   const [errorState, setErrorState] = useState('');
-  const [reloadState, setReloadState] = useState(false);
   const { loading, error, data } = useQuery(getALL);
   const [createTransaction, { err }] = useMutation(CREATE_TRANSACTION);
   const [deleteTransaction, { errr }] = useMutation(DELETE_TRANSACTION);
@@ -39,7 +36,15 @@ function App() {
   };
 
   const handleDelete = (id) => {
-    
+    deleteTransaction({
+      variables: {
+        id: id,
+      },
+    })
+    .then(() => {
+      const arr = dataState.filter(item => item.id !== id );
+      setDataState(arr);
+    });
   };
 
   const handleTransaction = (type) => {
