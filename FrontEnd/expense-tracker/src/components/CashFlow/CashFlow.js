@@ -21,7 +21,7 @@ const CashFlow = (props) => {
                         onClick={() => props.click('income')} >
                         INCOME
                     </button>
-                    <input type="text" name="amount" className="form-control" placeholder="3000" 
+                    <input type="number" name="amount" className="form-control" placeholder="3000" 
                         value={props.transaction.amount} onChange={props.change} />
                     <button className="btn btn-primary btn-expense" type="button" 
                         onClick={() => props.click('expense')} >

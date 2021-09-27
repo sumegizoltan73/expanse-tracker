@@ -106,7 +106,7 @@ function App() {
   };
 
   const handleTransaction = (type) => {
-    if (!transactionState.name || !transactionState.amount) {
+    if (!transactionState.name || !transactionState.amount || transactionState.amount < 1) {
       setErrorState('Please input all input fields!');
     }
     else {
@@ -114,7 +114,7 @@ function App() {
       createTransaction({
         variables: {
           name: transactionState.name,
-          amount: parseInt(transactionState.amount),
+          amount: Math.floor(transactionState.amount),
           type: type
         },
       }).then(data => {
