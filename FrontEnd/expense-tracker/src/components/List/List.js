@@ -57,6 +57,21 @@ const List = (props) => {
             
             <div className="row">
                 <div className="col-12">
+                    <div className="row bg-dark tracker-list-card top3-card">
+                        <div className="col-12 label">Top 3 expenses</div>
+                        {props.top3 && props.top3.map(item => (
+                            <div className="col-12 col-xxl-4 item" key={item.id}>
+                                {
+                                    `${item.name}: ${item.amount.toLocaleString('en-US').replace(/,/g, '.')}, HUF`
+                                }
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+            
+            <div className="row">
+                <div className="col-12">
                     <div className="list-group tracker-list-details">
                         {props.items && props.items.map(item => (
                             <div className="list-group-item list-group-item-action" key={item.id} >

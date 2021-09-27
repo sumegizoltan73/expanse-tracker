@@ -24,6 +24,7 @@ function App() {
     name: '',
     amount: 0
   });
+  const [top3State, setTop3State] = useState([]);
   const [dataState, setDataState] = useState([]);
   const [errorState, setErrorState] = useState('');
   const { loading, data } = useQuery(getALL);
@@ -68,6 +69,15 @@ function App() {
       name: name,
       amount: amount
     });
+  }, [dataState]);
+
+  useEffect(() => {
+    const arr = dataState.filter(item => item.type === 'expense' );
+    arr.sort(function (a, b) {
+      return b.amount - a.amount;
+    });
+
+    setTop3State(arr.slice(0,3));
   }, [dataState]);
 
   const handleCashFlowInputChange = (event) => {
@@ -154,6 +164,7 @@ function App() {
         <List 
           items={dataState.filter(predicateFn)} 
           mostExpensive={mostExpensiveState}
+          top3={top3State}
           selected={radioState} 
           changeRadio={handleRadioChange} 
           changeFilter={handleFilterChange}
