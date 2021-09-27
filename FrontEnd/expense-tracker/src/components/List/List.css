@@ -75,6 +75,10 @@
     font-weight: normal;
 }
 
+.bg-success {
+    background-color: #5CB85C !important;
+}
+
 .bg-success.amount-expense {
     background-color: #D9534F !important;
 }
