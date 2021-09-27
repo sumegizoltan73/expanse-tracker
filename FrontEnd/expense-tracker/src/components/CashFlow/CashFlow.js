@@ -3,6 +3,10 @@ import DoughnutChart from '../Chart/Chart';
 import './CashFlow.css';
 
 const CashFlow = (props) => {
+    const keyDown = (event) => {
+        if(event.key === '.' || event.key === ','){ event.preventDefault(); }
+    };
+
     return (
         <div className="col-12 col-md-4 cash-flow">
             <h2>Cash flow</h2>
@@ -22,7 +26,10 @@ const CashFlow = (props) => {
                         INCOME
                     </button>
                     <input type="number" name="amount" className="form-control" placeholder="3000" 
-                        value={props.transaction.amount} onChange={props.change} />
+                        value={props.transaction.amount} 
+                        onChange={props.change} 
+                        onKeyDown={keyDown}
+                    />
                     <button className="btn btn-primary btn-expense" type="button" 
                         onClick={() => props.click('expense')} >
                         EXPENSE
