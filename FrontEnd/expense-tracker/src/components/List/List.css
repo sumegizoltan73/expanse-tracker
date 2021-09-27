@@ -71,6 +71,10 @@
     font-weight: normal;
 }
 
+.bg-success.amount-expense {
+    background-color: #D9534F !important;
+}
+
 @media only screen and (max-width: 1399px) {
     .tracker-list label.btn {
         padding: 5px 34px;

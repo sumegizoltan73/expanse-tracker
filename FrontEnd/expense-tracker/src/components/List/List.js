@@ -2,6 +2,16 @@ import React from 'react';
 import './List.css';
 
 const List = (props) => {
+    const getAmountClasses = (type) => {
+        const classes = ['badge', 'rounded-pill', 'bg-success'];
+
+        if (type === 'expense') {
+            classes.push('amount-expense');
+        }
+
+        return classes.join(' ');
+    };
+
     return (
         <div className="col-12 col-md-8 tracker-list">
             <div className="row">
@@ -44,7 +54,7 @@ const List = (props) => {
                     <div className="list-group tracker-list-details">
                         {props.items && props.items.map(item => (
                             <div className="list-group-item list-group-item-action" key={item.id} >
-                                <span className="badge rounded-pill bg-success">{item.amount} HUF</span>
+                                <span className={getAmountClasses(item.type)}>{item.amount.toLocaleString('en-US').replace(/,/g, '.')} HUF</span>
                                 <button className="bg-dark" onClick={() => props.delete(item.id)}>X</button>
                                 <div className="inline left">{item.name}</div>
                             </div>

@@ -26,3 +26,13 @@ h2 {
     background-color: #D9534F;
     border: 1px solid #ced4da;
 }
+
+.btn-income:active, .btn-income:focus, .btn-income:hover {
+    background-color: #5CB85C;
+    border: 1px solid #ced4da;
+}
+
+.btn-expense:active, .btn-expense:focus, .btn-expense:hover {
+    background-color: #D9534F;
+    border: 1px solid #ced4da;
+}
