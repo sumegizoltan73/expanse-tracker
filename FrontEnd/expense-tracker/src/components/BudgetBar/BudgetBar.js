@@ -7,9 +7,9 @@ const BudgetBar = (props) => {
         <div className="budget-bar">
             <hr />
             <div className="row">
-                <BudgetItem title="Budget" text="450.000" />
-                <BudgetItem title="Remaining" text="344.000" />
-                <BudgetItem title="Spent so far" text="106.000" />  
+                <BudgetItem title="Budget" text={props.budget.toLocaleString('en-US').replace(/,/g, '.')} />
+                <BudgetItem title="Remaining" text={props.remaining.toLocaleString('en-US').replace(/,/g, '.')} />
+                <BudgetItem title="Spent so far" text={props.spent.toLocaleString('en-US').replace(/,/g, '.')} />  
             </div>
             <hr />   
         </div>

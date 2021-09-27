@@ -44,7 +44,12 @@ const List = (props) => {
                 <div className="col-12">
                     <div className="row bg-dark tracker-list-card most-expensive-card">
                         <div className="col-12 col-xxl-6 label">Most expensive action ever</div>
-                        <div className="col-12 col-xxl-6 item">Grocery: 60.000, HUF</div>
+                        <div className="col-12 col-xxl-6 item">
+                            {
+                                props.mostExpensive.name && 
+                                `${props.mostExpensive.name}: ${props.mostExpensive.amount.toLocaleString('en-US').replace(/,/g, '.')}, HUF`
+                            }
+                        </div>
                     </div>
                 </div>
             </div>

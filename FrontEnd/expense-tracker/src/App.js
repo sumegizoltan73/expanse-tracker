@@ -14,18 +14,64 @@ function App() {
     amount: '',
     type: ''
   });
+  const [budgetState, setBudgetState] = useState({
+    budget: 0,
+    remaining: 0,
+    spent: 0
+  });
+  const [mostExpensiveState, setMostExpensiveState] = useState({
+    name: '',
+    amount: 0
+  });
   const [dataState, setDataState] = useState([]);
   const [errorState, setErrorState] = useState('');
   const { loading, error, data } = useQuery(getALL);
   const [createTransaction, { err }] = useMutation(CREATE_TRANSACTION);
   const [deleteTransaction, { errr }] = useMutation(DELETE_TRANSACTION);
+  const { budget, remaining, spent } = budgetState;
 
   useEffect(() => {
     if (!loading) {
       setDataState(data.getAll);
     }
   }, [loading, data]);
-  
+
+  useEffect(() => {
+    const sumFiltered = (type) => {
+      const arr = dataState.filter(item => item.type === type );
+      if (arr.length > 1) {
+        return arr.reduce((prev, curr) => prev.amount + curr.amount);
+      }
+      else if (arr.length === 1) {
+        return arr[0].amount;
+      }
+      else {
+        return 0;
+      }
+    };
+    const bud = sumFiltered('income');
+    const sp = sumFiltered('expense');
+
+    setBudgetState({
+      budget: bud,
+      remaining: bud-sp,
+      spent: sp
+    });
+  }, [dataState]);
+
+  useEffect(() => {
+    const arr = dataState.filter(item => item.type === 'expense' );
+    arr.sort(function (a, b) {
+      return b.amount - a.amount;
+    });
+    const { name, amount } = (arr.length > 0) ? arr[0] : { name: '', amount: 0 }; 
+
+    setMostExpensiveState({
+      name: name,
+      amount: amount
+    });
+  }, [dataState]);
+
   const handleCashFlowInputChange = (event) => {
     let { name, value } = event.target;
     setTransactionState({ ...transactionState, [name]: value });
@@ -73,7 +119,11 @@ function App() {
   return (
     <div className="App">
       <h1>My Budget Planner</h1>
-      <BudgetBar />
+      <BudgetBar 
+        budget={budget}
+        remaining={remaining}
+        spent={spent}
+      />
       <div className="row">
         <CashFlow 
           click={handleTransaction} 
@@ -81,7 +131,13 @@ function App() {
           transaction={transactionState} 
           error={errorState}
         />
-        <List items={dataState} selected={radioState} changeRadio={handleRadioChange} delete={handleDelete} />
+        <List 
+          items={dataState} 
+          mostExpensive={mostExpensiveState}
+          selected={radioState} 
+          changeRadio={handleRadioChange} 
+          delete={handleDelete} 
+        />
       </div>
     </div>
   );
