@@ -35,7 +35,8 @@ const List = (props) => {
                 </div>
                 <div className="col-12 col-xxl-6">
                     <div className="input-group" >
-                        <input type="text" className="form-control" placeholder="Type to search" />
+                        <input type="text" className="form-control" placeholder="Type to search"
+                            onChange={props.changeFilter} />
                     </div>
                 </div>
             </div>

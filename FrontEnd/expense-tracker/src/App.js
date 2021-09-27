@@ -9,6 +9,7 @@ import { getALL } from "./GraphQL/Query";
 
 function App() {
   const [radioState, setRadioState] = useState('expenses');
+  const [filterState, setFilterState] = useState('');
   const [transactionState, setTransactionState] = useState({
     name: '',
     amount: '',
@@ -25,9 +26,9 @@ function App() {
   });
   const [dataState, setDataState] = useState([]);
   const [errorState, setErrorState] = useState('');
-  const { loading, error, data } = useQuery(getALL);
-  const [createTransaction, { err }] = useMutation(CREATE_TRANSACTION);
-  const [deleteTransaction, { errr }] = useMutation(DELETE_TRANSACTION);
+  const { loading, data } = useQuery(getALL);
+  const [createTransaction] = useMutation(CREATE_TRANSACTION);
+  const [deleteTransaction] = useMutation(DELETE_TRANSACTION);
   const { budget, remaining, spent } = budgetState;
 
   useEffect(() => {
@@ -78,6 +79,10 @@ function App() {
     setRadioState(event.target.id);
   };
 
+  const handleFilterChange = (event) => {
+    setFilterState(event.target.value);
+  };
+
   const handleDelete = (id) => {
     deleteTransaction({
       variables: {
@@ -113,6 +118,24 @@ function App() {
     }
   };
 
+  const predicateFn = (item) => {
+    let types = [];
+    switch (radioState) {
+      case 'incomes':
+        types.push('income');
+        break;
+      case 'expenses':
+        types.push('expense');
+        break;
+      default:
+        types.push('income');
+        types.push('expense');
+        break;
+    }
+
+    return types.includes(item.type) && (item.name.startsWith(filterState) || !filterState);
+  };
+
   return (
     <div className="App">
       <h1>My Budget Planner</h1>
@@ -129,10 +152,11 @@ function App() {
           error={errorState}
         />
         <List 
-          items={dataState} 
+          items={dataState.filter(predicateFn)} 
           mostExpensive={mostExpensiveState}
           selected={radioState} 
           changeRadio={handleRadioChange} 
+          changeFilter={handleFilterChange}
           delete={handleDelete} 
         />
       </div>
