@@ -3,7 +3,6 @@ import { Doughnut } from 'react-chartjs-2';
 import './Chart.css';
 
 const DoughnutChart = (props) => {
-    console.log(props.chartData);
     const data = {
         labels: ['Budget', 'Remaining', 'Spent'],
         datasets: [
@@ -26,6 +25,7 @@ const DoughnutChart = (props) => {
 
     return (
         <div className="doughnut-chart">
+            <h2>Chart</h2>
             <Doughnut data={data} />
         </div>
     );

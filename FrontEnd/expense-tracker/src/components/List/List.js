@@ -59,10 +59,10 @@ const List = (props) => {
                 <div className="col-12">
                     <div className="row bg-dark tracker-list-card top3-card">
                         <div className="col-12 label">Top 3 expenses</div>
-                        {props.top3 && props.top3.map(item => (
+                        {props.top3 && props.top3.map((item, i) => (
                             <div className="col-12 col-xxl-4 item" key={item.id}>
                                 {
-                                    `${item.name}: ${item.amount.toLocaleString('en-US').replace(/,/g, '.')}, HUF`
+                                    `${i + 1}. ${item.name}: ${item.amount.toLocaleString('en-US').replace(/,/g, '.')}, HUF`
                                 }
                             </div>
                         ))}

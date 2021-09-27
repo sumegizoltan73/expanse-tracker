@@ -42,6 +42,10 @@
     text-align: right;
 }
 
+.top3-card {
+    text-align: left;
+}
+
 .tracker-list-details {
     margin-top: 20px;
     margin-bottom: 20px;
