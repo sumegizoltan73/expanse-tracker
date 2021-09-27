@@ -8,7 +8,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from "@apollo/c
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: "http://localhost:8080/graphql",
+    uri: "https://expense-tracker2021.azurewebsites.net/graphql",
   }),
 });
 
