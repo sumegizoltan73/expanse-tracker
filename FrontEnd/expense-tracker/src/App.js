@@ -39,11 +39,8 @@ function App() {
   useEffect(() => {
     const sumFiltered = (type) => {
       const arr = dataState.filter(item => item.type === type );
-      if (arr.length > 1) {
-        return arr.reduce((prev, curr) => prev.amount + curr.amount);
-      }
-      else if (arr.length === 1) {
-        return arr[0].amount;
+      if (arr.length > 0) {
+        return arr.reduce((prev, curr) => prev + curr.amount, 0);
       }
       else {
         return 0;
