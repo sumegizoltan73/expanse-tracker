@@ -1,4 +1,5 @@
 import React from 'react';
+import DoughnutChart from '../Chart/Chart';
 import './CashFlow.css';
 
 const CashFlow = (props) => {
@@ -29,6 +30,7 @@ const CashFlow = (props) => {
                 </div>
             </div>
             
+            <DoughnutChart chartData={props.chartData}/>
         </div>
         
     );

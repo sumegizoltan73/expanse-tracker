@@ -160,6 +160,7 @@ function App() {
           change={handleCashFlowInputChange} 
           transaction={transactionState} 
           error={errorState}
+          chartData={[budget, remaining, spent]}
         />
         <List 
           items={dataState.filter(predicateFn)} 
