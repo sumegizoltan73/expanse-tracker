@@ -2,21 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import {Provider} from 'react-redux';
 import reportWebVitals from './reportWebVitals';
+import store from './redux/store';
 import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from "@apollo/client";
 
 const client = new ApolloClient({
   cache: new InMemoryCache(),
   link: new HttpLink({
-    uri: "https://expense-tracker2021.azurewebsites.net/graphql",
+    uri: "http://localhost:8080/graphql",
   }),
 });
 
 ReactDOM.render(
   <React.StrictMode>
-    <ApolloProvider client={client}>
-      <App />
-    </ApolloProvider>
+    <Provider store={store}>
+      <ApolloProvider client={client}>
+        <App />
+      </ApolloProvider>
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
